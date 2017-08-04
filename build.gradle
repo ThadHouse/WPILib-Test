@@ -1,4 +1,5 @@
 import edu.wpi.first.nativeutils.NativeUtils
+import edu.wpi.first.nativeutils.tasks.JNIHeaders
 
 buildscript {
     repositories {
@@ -8,7 +9,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'gradle.plugin.edu.wpi.first:native-utils:1.0'
+        classpath 'gradle.plugin.edu.wpi.first:native-utils:1.2.9'
     }
 }
 
@@ -16,7 +17,11 @@ plugins {
     id 'edu.wpi.first.wpilib.versioning.WPILibVersioningPlugin' version '1.6'
 }
 
-ext.licenseFile = new File("$rootDir/license.txt")
+ext.licenseFile = file("$rootDir/license.txt")
+
+ext.getJNIHeadersClass = {
+    return JNIHeaders
+}
 
 ext.getClassifier = { binary->
     return NativeUtils.getClassifier(binary)

@@ -32,6 +32,19 @@ task cppSourcesZip(type: Zip) {
     from('src/main/native/cpp') {
         into '/'
     }
+
+    model {
+        tasks {
+            it.each {
+                if (it in getJNIHeadersClass()) {
+                    from (it.outputs.files) {
+                        into '/'
+                    }
+                    dependsOn it
+                }
+            }
+        }
+    }
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {

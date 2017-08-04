@@ -2,23 +2,9 @@ import edu.wpi.first.nativeutils.NativeUtils
 import org.gradle.api.file.FileCollection
 import org.gradle.internal.os.OperatingSystem
 
-buildscript {
-    repositories {
-        mavenLocal()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath 'edu.wpi.first:native-utils:0.1-SNAPSHOT'
-        classpath 'gradle.plugin.edu.wpi.first.wpilib.versioning:wpilib-version-plugin:1.6'
-    }
-}
-
 repositories {
     mavenCentral()
 }
-
 
 apply plugin: 'cpp'
 apply plugin: 'visual-studio'
@@ -54,12 +40,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile 'com.google.guava:guava:19.0'
     testRuntime files(project.nativeTestFilesJar.archivePath)
-    /*
-    NativeUtils.getBuildConfigs().each {
-        def base = 'edu.wpi.first.ntcore:ntcore-jni:+:'
-        testRuntime base + NativeUtils.getClassifier(it)
-    }
-    */
 }
 
 model {
